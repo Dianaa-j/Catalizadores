@@ -1,0 +1,481 @@
+---
+title: "Evaluación 2"
+author: "Diana Laura Javier Garcia"
+date: "18/10/2020"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+
+
+# 1. Usted está encargado de determinar si un nuevo método de análisis es mejor que el método tradicional. 
+
+
+## a) Presentar (en Geogebra o en R) una descripción estadística de las mediciones con los dos métodos (medidas de tendencia, varianza y graficas, histograma y boxplot)
+
+En este trabajo se analizaran los datos correspondientes al documento "catalizador2". El cual consiste en dos muestras $m_1$ y $m_2$, cada una con 36 datos, los cuales se leen  con las siguientes instrucciones, y además, se presentan la lectura de los datos de la población.  
+
+En este caso, la muestra 1 ($m_1$) se refiere a las mediciones tomada con un método tradicional, mientras que la muestra 2 ($m_2$) se refiere a datos tomados por un método nuevo. 
+
+```{r}
+m1<-read.table("catalizador2_m1.txt",header = F)
+attach(m1)
+```
+
+```{r}
+m2<-read.table("catalizador2_m2.txt",header = F)
+attach(m2)
+```
+
+```{r}
+poblacion<-read.table("poblacion.txt",header = F)
+attach(poblacion)
+```
+
+A continuación se presenta la descripción estadistica de las mediciones para la población, y cada una de las muestras. 
+
+Las medidas de tendencia central fueron calculadas con la instrucción: 
+
+# ```{r}
+# summary(x)
+# ```
+
+Mientrás, que las medidas de dispersión fuerón calculadas de la siguiente manera: 
+
+Varianza:
+
+# ```{r}
+# var(x)
+#```
+
+Desviación estandar:
+
+# ```{r}
+# sd(x)
+# ```
+
+O bien:
+
+
+# ```{r}
+# sapply(x,sd)
+# ```
+
+1. Población 
+
+Para estudiar la población se estudiaron la dos muestras obtenidas por ambos métodos en un solo archivo. Los parametros estadisticos de la población se presentan a continuación
+```{r}
+summary(poblacion)
+```
+
+Las medidas de dispersión de la población son las siguientes:
+
+Varianza:
+
+```{r}
+ var(poblacion)
+```
+
+Desviación estandar:
+
+```{r}
+sapply(poblacion,sd)
+```
+Por otra parte, el histograma de la población se generó con la siguiente instrucción:
+
+```{r}
+hist(poblacion$V1, main = "Histograma de la población", ylab = "Frecuencia", xlab = "Población",col = "skyblue3", labels = TRUE)
+```
+
+
+Mientras que el diagrama de caja, fue obtenido de la siguiente manera:
+
+
+```{r}
+boxplot(poblacion, main="Diagrama de caja de la población", xlab="Población",col = "skyblue", labels=TRUE)
+```
+De los parámetros presentados en el resumen de la población se observa que la media de los datos es 75.61  con una varianza importante de 60.93. Partiendo de que el mínimo de los datos es 59.20 y el máximo es 94.10, se infiere que el 25% de los datos se encuentran en entre 59.20 y 70.60, el 50% de los datos se encuentran entre 59.20 y 75.1, y el 75% se encuentran entre 59.20 y 80.15. Se observa además que la mediana y la media difieren por decimas, por lo que se pueden considerar como iguales. 
+Del histograma presentado, con ocho clases se observa que los datos se conccentran en la región entre 70 y 80, además a partir de diagrama de caja se observa que existe una dispersión de datos importante de aproximadamente siete unidades. 
+
+2. Muestra 1 (referentes al método tradional)
+
+Con respecto a los datos de la muestra 1, obtenidos por el método tradicional se obtuvieron los parámetros estadísticos: 
+
+```{r}
+summary(m1)
+```
+
+Con una varianza y desviación estandar de: 
+
+
+Varianza:
+
+```{r}
+ var(m1)
+```
+Desviación estandar:
+
+```{r}
+sapply(m1,sd)
+```
+
+El histograma de la muestra 1 se generó con la siguiente instrucción:
+
+```{r}
+hist(m1$V1, main = "Histograma de la Muestra 1", ylab = "Frecuencia", xlab = "Muestra 1",col = "palegreen3", labels = TRUE)
+```
+
+Mientras que el diagrama de caja, fue obtenido de la siguiente manera:
+
+
+```{r}
+boxplot(m1, main="Diagrama de caja de la Muestra 1", xlab="Muestra 1",col = "palegreen", labels=TRUE)
+```
+Finalmente se ajusto una curva normal en geogebra: 
+
+```{r out.width="600px"}
+ knitr::include_graphics("normalm1.png" )
+
+```
+
+De los parámetros estadisticos de la muestra 1 correspondientes al método tradicional se tienen las siguientes observaciones:
+
+La media es de 73.020 con una varianza de 38.79 y una desviación estandar de 6.22. Dado que el minimo es 62.50 y el máximo es 89.00, se infiere que el 25% de los datos se encuentran entre 62.50 y 68.65, el 50% entre 62.50 y 72.60 y el 75% de los datos ente 62.50 y 78.47. Por otra parte, el histograma presentado muestra que la clase ente 70 y 75 es la que mayor frecuencia tiene, y además le corresponde una distribución normal.
+
+3. Muestra 2 (referentes al método nuevo)
+
+Con respecto a la muestra dos, obtenidos por el método nuevo se obtuvieron las parámetros estadísticos:
+
+```{r}
+summary(m2)
+```
+
+Con una varianza
+
+```{r}
+var(m2)
+```
+
+
+```{r}
+sapply(m2,sd)
+```
+Con una desviación estandar:
+
+Por otra parte, el histograma de la muestra 2 se genero con la siguiente instrucción:
+
+```{r}
+hist(m2$V1, main = "Histograma de la Muestra 2", ylab = "Frecuencia", xlab = "Muestra 2",col = "orange2", labels = TRUE)
+```
+
+Mientras que el diagrama de caja, fue obtenido de la siguiente manera:
+
+
+```{r}
+boxplot(m2, main="Diagrama de caja de la muestra 2", xlab="Muestra 2",col = "gold", labels=TRUE)
+```
+El ajuste de la distribución normal se muestra a continuación:
+
+```{r out.width="600px"}
+ knitr::include_graphics("normalm2.png" )
+
+```
+
+A partir de los parametros obtenidos para la muestra 2, se tienen las siguientes observaciones: 
+
+La muestra dos, correspondiente a un método nuevo, tiene una media de 78.19, con una varianza y una desviación estandar de 71.06 y 8.42 respectivamente. El 25% de los datos se concentra entre 59.20 y 72.97, el 50% entre 59.20 y 79.35, y el 75% entre 59.20 y 84.55. A partir del histograma se observa que los datos se concentran entre 70 y 90, sin embargo, para seis numeros de clase, la distribución normal se ajusta. 
+
+Los datos se resumen en la siguiente tabla:
+
+
+Table: Tabla 1. Descripción estadistica de la población, la muestra 1 (método tradicional) y la muestra 2 (método nuevo) 
+
+ **Parametros** |  **Población** | **Muestra 1**| **Muestra 2** 
+----------------------| ----------------------|----|-----|
+*Mínimo* | 59.20 |62.50|59.20
+*1er cuartil* | 70.60|68.65|72.97
+*Mediana*| 75.15|72.60|79.35
+*Media*|75.61|73.02|78.19
+*3er cuartil*|80.15|78.47|84.55
+*Máximo*|94.10|89.00|94.10|
+*Varianza*|60.93|38.79|71.06
+*Desviación estandar*|7.80|6.22|8.42
+
+Como se puede observar en la Tabla anterior, los valores de la población y las muestras difieren por dos y cinco unidades entre población y muestras, y lo mismo ocurre con los demás parámetros estadisticos, salvo la muestra 2 que presenta una varianza mayor comparada con la de la muestra 1. Se observó además que a cada muestra le corresponde una distribución normal. De manera general, se puede concluir que aunque ambos métodos proporcionan una media similar, la desviación estandar de la muestra dos es más grande, dicho de otra manera, el empleo del método nuevo genera tienes desviaciones importantes en las mediciones. 
+
+
+## b) En R: Para cada muestra hacer una estimación puntual del promedio de la población y una estimación por intervalo del promedio poblacional a un nivel de confianza del 95 (suponer que no se conoce la desviación estándar ni la varianza de la población). Compararar los resultados usando una Distribución Normal y la Distribución t Student. Presentar los resultados en una tabla ¿Cuáles son las conclusiones?
+
+**Definiciónes:**
+
+1. Un estimador puntual está determinado por un número. El estimador del promedio, o de la media, esta dado por: $\bar{x}=\frac{\Sigma x_i}{n}$ donde n es el número de datos de la muestra. 
+
+2. Un estimador de intervalo está determinado por dos números entre los cuales se encuentra el parametro poblacional. A continuación se describe el intervalo de confianza para la media $\mu$ con $\sigma$ desconocida para una población con variable aleatoria X con distribución $X \rightarrow N(\mu, \sigma)$. 
+
+Tomando como estimador de la media poblacional la media muestral, el estadistico muestral Ut,v sigue un modelo t de Student con $n-1$ grado de libertad:
+
+$U_{t,\nu}=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\rightarrow t_{n-1}$
+
+Dado un nivel de confianza $(1-\alpha)$ el intervalo de confianza para la media a este nivel es:
+
+$[\bar{X}-t_{\alpha/2} \frac{s}{\sqrt{n}},\bar{X}+t_{\alpha/2} \frac{s}{\sqrt{n}}]$
+
+Donde S es la cuasivarianza muestral:
+
+$s=\sqrt{\frac{(\Sigma (x_i)-\bar{X})^2}{n-1}}$
+
+Es importante mencionar que cuando el tamaño muestral es grande, la t de Student se aproxima a una normal.
+
+Si además, se supone que la población sigue una variable aleatoria X con distribución $X \rightarrow N(\mu, \frac{\sigma}{\sqrt{n}})$. La variable estandarizada sigue un modelo N(0,1): 
+
+$Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1) $
+
+Dado un nivel de confianza $(1-\alpha)$ podemos encontrar en la distribución los valores que encierran el centro de la distribución un área igual $(1-\alpha)$:
+
+$P(-z_{\alpha/2}< Z < z_{\alpha/2}})=P(-z_{\alpha/2} < \frac{\bar{X}-\mu} \frac{\sigma}{\sqrt{n}} <z_{\alpha/2}})$
+
+$[\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}},\bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}]$
+
+Para la muestra 1 se obtuvo lo siguiente:
+
+a) Estimador puntual del promedio de la población (muestra 1)
+
+Dado que en el inciso anterior se obtuvieron los estadisticos muestrales, como el promedio, entonces el estimador puntial del promedio de la población para la muestra 1 $\bar{x_1}$ es el siguiente: 
+
+```{r}
+mean(m1$V1)
+```
+
+$\Rightarrow \bar{x_1}=\frac{\Sigma x_i}{n}=73.01$
+
+b) Estimador de intervalo del promedio poblacional a 95%
+
+El enunciado indica que no se conoce la desviación estándar ni la varianza de la población, por lo tanto las ecuaciones que se deben emplear son las siguientes:
+
+Cuasivarianza muestral s: $s=\sqrt{\frac{\Sigma (x_i-\bar{X})^2}{n-1}}$
+
+$S=\sqrt{\frac{n}{n-1}Var_{muestra}}$$
+
+Intervalo de confianza: $[\bar{X}-t_{\alpha/2} \frac{s}{\sqrt{n}},\bar{X}+t_{\alpha/2} \frac{s}{\sqrt{n}}]$
+ 
+
+Para el nivel de confianza del 95%, se tiene el intervalo de confianza para la media al nivel:
+
+$(1-\alpha)=1-0.95=0.05$
+
+
+Además: 
+
+$S=\sqrt{\frac{n}{n-1}Var_{muestra}}=\sqrt{\frac{36}{36-1}(38.79)}=6.31$
+
+Para evaluar $t_{\frac{\alpha}{2},\nu}$ se debe tomar en cuenta la Distribución t de Student, la cual es simétrica,en este caso  $\frac{\alpha}{2}=\frac{0.05}{2}=0.025$ con $\nu=n -1$ grados de libertad, es decir: $\nu=36-1=35$. De esta manera, se busca en la tabla la intersección de la fila $\nu=35$ y $\frac{\alpha}{2}=0.025$. 
+
+```{r out.width="400px"}
+ knitr::include_graphics("Student.png" )
+
+```
+
+Así: $t_{\frac{\alpha}{2},\nu}$ =2.0301
+
+Por lo tanto, el intervalo de confianza:
+$[\bar{X}-t_{\alpha/2} \frac{s}{\sqrt{n}},\bar{X}+t_{\alpha/2} \frac{s}{\sqrt{n}}]$
+
+$[73.01-2.0301 \frac{6.31}{\sqrt{36}},73.01+2.0301 \frac{6.31}{\sqrt{36}}]$
+
+$[73.01-2.1349,73.01+2.1349]= [70.8751,75.144]$
+
+Además, se calculo el intervalo de confianza a partir de la Distribución Normal.
+
+$[\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}},\bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}]$
+
+$[73.01- (1.96) \frac{6.31}{\sqrt{36}},73.01+(1.96) \frac{6.31}{\sqrt{36}}]$
+
+$[73.01-2.0612,73.01+2.0612]$
+
+$\Rightarrow [70.9488,75.0712]$
+
+
+Para la muestra 2 se obtuvo lo siguiente:
+
+a) Estimador puntual del promedio de la población (muestra 2)
+
+De la misma manera que para la muestra 1, en el inciso anterior se obtuvieron los estadisticos muestrales, entre ellos el promedio, entonces el estimador puntual del promedio de la población para la muestra 1 $\bar{x_2}$ es el siguiente: 
+
+```{r}
+mean(m2$V1)
+```
+
+$\Rightarrow \bar{x_2}=\frac{\Sigma x_i}{n}=78.19$
+
+
+b) Estimador de intervalo del promedio poblacional a 95%
+
+El enunciado indica que no se conoce la desviación estándar ni la varianza de la población, por lo tanto las ecuaciones que se deben emplear son las siguientes:
+
+$S=\sqrt{\frac{n}{n-1}Var_{muestra}}$$
+
+Intervalo de confianza: $[\bar{X}-t_{\alpha/2} \frac{s}{\sqrt{n}},\bar{X}+t_{\alpha/2} \frac{s}{\sqrt{n}}]$
+ 
+
+Para el nivel de confianza del 95%, se tiene el intervalo de confianza para la media al nivel:
+
+$(1-\alpha)=1-0.95=0.05$
+
+Además: 
+
+$S=\sqrt{\frac{n}{n-1}Var_{muestra}}=\sqrt{\frac{36}{36-1}(71.06)}=8.549$
+
+Para evaluar $t_{\frac{\alpha}{2},\nu}$ se debe tomar en cuenta la Distribución t de Student, la cual es simétrica,en este caso  $\frac{\alpha}{2}=\frac{0.05}{2}=0.025$ con $\nu=n -1$ grados de libertad, es decir: $\nu=36-1=35$. De esta manera, se busca en la tabla la intersección de la fila $\nu=35$ y $\frac{\alpha}{2}=0.025$. 
+
+Así: $t_{\frac{\alpha}{2},\nu}$ =2.0301
+
+Por lo tanto, el intervalo de confianza:
+$[\bar{X}-t_{\alpha/2} \frac{s}{\sqrt{n}},\bar{X}+t_{\alpha/2} \frac{s}{\sqrt{n}}]$
+
+$[78.19-2.0301 \frac{8.549}{\sqrt{36}},78.19+2.0301 \frac{8.549}{\sqrt{36}}]$
+
+$[78.19-2.8925,78.19+2.8925]= [75.3,81.08]$
+
+Además, se calculo el intervalo de confianza a partir de la Distribución Normal.
+
+$[\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}},\bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}]$
+
+$[78.19- (1.96) \frac{8.549}{\sqrt{36}},78.19+(1.96) \frac{8.549}{\sqrt{36}}]$
+
+$[78.19-2.7916,78.19+2.7916]$
+
+$\Rightarrow [75.399,80.981]$
+
+Los resultados se resumen en la tabla 2:
+
+Table: Tabla 2. Estimación puntual y por intervalo del promedio de la población de las muestras 
+
+ **Estimador** |**Muestra 1**| **Muestra 2** 
+----------------------|----|-----|
+*Estimador puntual* | 73.01 |78.19
+*Intervalo t Student* | [70.875,75.144]|[75.3,81.08]
+*Intervalo D. Normal*|[70.948,75.071]|[75.399,80.981]
+
+Con se puede observar en la Tabla anterior, las estimaciones por intervalo del promedio con Distribución de Student y Normal no difieren entre sí en cada una de las muestras, lo cual sugiere que se puede emplear cualquiera de estas dos distribuciones. Es importante notar además que, los intervalo de la muestra 2 toman valores mayores que los de la muestra 1, esto se puede deber a que la muestra tiene una varianza mayor. 
+
+
+## c) En R. Hacer una estimación por intervalo de la desviación estándar y de la varianza de cada muestra a un nivel de confianza del 95%. 
+
+**Definición**
+
+Intervalo de confianza para la varianza de una población: Sea una población sobre la que se observa una variable aleatoria X con distribución $x \rightarrow N(\mu,\sigma)$, tomando como estimador de la varianza poblacional la cuasivarianza muestra. El estadistico muestral Uchi sigue un modelo Chi-cuadrdo con n-1 grados de libertad. 
+
+$U_{chi}=\frac{(n-1)S^2}{\sigma^2} \rightarrow \chi^2_{n-1}$
+
+Donde $S^2=\frac{\Sigma(X_i-\bar{X})^2}{n-1}$
+
+Dado un nivel de confianza $(1-\alpha)$ podemos encontrar en la distribución los valores que encierran en el centro de la distribución un área (probablidad) igual a $(1-\alpha)$. De esta manera, el intervalor  de confianza para la varianza al nivel $(1-\alpha)$ es el siguiente:
+
+$[\frac{(n-1)S^2}{\chi_{\alpha/2}^2}, \frac{(n-1)S^2}{\chi_{1-\alpha/2}^2}]$
+
+
+a) Muestra 1
+
+En el inciso anterior se calculó la cuasivarianza muestral s:
+$S=\sqrt{\frac{n}{n-1}Var_{muestra}}=\sqrt{\frac{36}{36-1}(38.79)}=6.31$
+
+$\Rightarrow S^2=39.816$
+
+Entonces, el intervalo para un nivel de confianza del 95% con $n=36$, está dado de la siguiente manera:
+
+$1-\alpha=0.95 \Rightarrow \alpha=0.05$
+
+$[\frac{(n-1)S^2}{\chi_{\alpha/2}^2}, \frac{(n-1)S^2}{\chi_{1-\alpha/2}^2}]$
+
+Donde $\chi_{\alpha/2}^2=\chi_{0.05/2}^2=\chi_{0.025}^2=20.5693$
+
+$\chi_{1-\alpha/2}^2=\chi_{1-0.05/2}=\chi_{0.975}=53.2033$
+
+```{r}
+qchisq(0.025,35)
+```
+```{r}
+qchisq(0.975,35)
+```
+$\Rightarrow  [\frac{(n-1)S^2}{\chi_{\alpha/2}^2}, \frac{(n-1)S^2}{\chi_{1-\alpha/2}^2}]$
+
+$\Rightarrow  [\frac{(36-1)*39.81}{53.2033}, \frac{(36-1)*39.81}{20.5993}]$
+
+$\Rightarrow[26.1891,67.6406]$
+
+Por lo tanto, $S^2$ de la muestra 1 con un nivel de confianza del 95% se encuentra en el intervalo $[26.1891,67.6406]$.
+
+
+
+b) Muestra 2
+
+Al igual que en el inciso anterior, se evaluaron $\chi_{\alpha/2}^2$ y $\chi_{1-\alpha/2}^2$ para $\nu=n-1=36-1=354$. Donde:
+
+$1-\alpha=0.95 \Rightarrow \alpha=0.05$ 
+
+S está dada por: 
+
+$S=\sqrt{\frac{n}{n-1}Var_{muestra}}=\sqrt{\frac{36}{36-1}(71.06)}=8.549$
+
+$\Rightarrow S^2=73.090$
+
+El intervalo está dado por: 
+
+$[\frac{(n-1)S^2}{\chi_{\alpha/2}^2}, \frac{(n-1)S^2}{\chi_{1-\alpha/2}^2}]$
+
+Donde $\chi_{\alpha/2}^2=\chi_{0.05/2}^2=\chi_{0.025}^2=20.5693$
+
+$\chi_{1-\alpha/2}^2=\chi_{1-0.05/2}=\chi_{0.975}=53.2033$
+
+```{r}
+qchisq(0.025,35)
+```
+```{r}
+qchisq(0.975,35)
+```
+
+$\Rightarrow  [\frac{(36-1)*73.090}{53.2035}, \frac{(36-1)*73.090}{20.5993}]$
+
+$\Rightarrow [48.082,124.186]$
+
+Por lo tanto, $S^2$ de la muestra 2 con un nivel de confianza del 95% se encuentra en el intervalo $[48.082,124.186]$. 
+
+
+Comparando los dos intervalos de confianza de la varianza de la muestra y de la muestra 2, se observa que el intervalo de la muestra 2 tiene una amplitud mayor comparada con la muestra 1, esto se debe a que, como se presentó en el primer inciso, la muestra 2 correspondiente al método nuevo, tiene una mayor varianza. 
+
+**Definición**
+
+El intervalo de confianza correspondiente para la desviación estandar $\sigma$ está dado por las raices cuadradas de los límites de confianza para la varianza:
+
+$\sqrt{\frac{(n-1)S^2}{\chi_{\alpha/2}^2}}<\sigma<\sqrt{\frac{(n-1)S^2}{\chi_{1-\alpha/2}^2}}$
+
+
+a) Para la muestra 1 con $\nu=36-1=35$ grados de libertad y $s=6.31$ con intervalo de la varianza $S^2$:
+
+$26.1891<S^2<,67.6406$
+
+Calculando la raíz cuadrada en el intervalo:
+
+$\sqrt{26.1891}<S<\sqrt{67.6406}$
+
+$\Rightarrow 5.117<s<8.224$
+
+Por lo tanto, la muestra 1 con desviación estandar 6.31 tiene un intervalo de confianza: $5.117<s<8.224$.
+
+b) Para la muestra 2 con $\nu=36-1=35$ grados de libertad y $s=8.541$ e intervalo de la varianza $S^2$:
+
+$[48.082<S^2<124.186]$
+
+Se obtiene el intervalo de la desviación estandar calculando las raices cuadradas del intervalo de la varianza:
+
+$\sqrt{48.082}<S<\sqrt{124.186}$
+
+$\Rightarrow 6.934<S<11.143$
+
+Por lo tanto, la muestra 2 con desviación estandar 8.541 tiene un intervalo de confianza $6.934<S<11.143$. 
+
+Como se puede observar, al igual que el intervalo de varianza, el intervalo de la desviación estandar del método dos es más amplió que el del método uno, esto se debe a que está relacionado directamente con la varianza. 
+
+A manera de conclusión se tienen las siguientes observaciones: la media obtenidoa en ambos métodos es similar, aunque difiere en cinco unidades, sin embargo, la varianza del método dos o nuevo es mucho mayor. De igual manera, los intervalos de confianza de la media, la varianza y la desviación estandar de la muestra dos son más amplios que los de la muestra uno. Por lo tanto se sugiere mantener las mediciones por el método tradicional. 
